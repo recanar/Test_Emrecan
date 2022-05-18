@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class GameManager : MonoBehaviour
     public GameObject tapToStartText;
     public States currentState;
     public static GameManager instance;
+
+    private PlayerController _playerController;
     void Awake()
     {
         currentState = States.TapToStart;
@@ -23,7 +26,11 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
-        
+    }
+
+    private void Start()
+    {
+        _playerController= GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -32,6 +39,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0)&& currentState==States.TapToStart)
         {
             tapToStartText.SetActive(false);
+            _playerController.FollowEnable();
             currentState = States.Playing;
         }
     }
