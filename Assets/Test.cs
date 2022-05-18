@@ -21,6 +21,9 @@ public class Test : MonoBehaviour
         spline.points[1] = new SplinePoint(Vector3.forward*10);
         spline.points[2] = new SplinePoint(Vector3.forward*20);
         spline.points[3] = new SplinePoint(Vector3.forward*30);
+        spline.points[3] = new SplinePoint(Vector3.forward*40);
+        spline.points[3] = new SplinePoint(Vector3.forward*50);
+        spline.points[3] = new SplinePoint(Vector3.forward*60);
 
     }
 
