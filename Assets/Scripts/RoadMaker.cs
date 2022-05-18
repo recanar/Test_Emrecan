@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using Dreamteck.Splines;
 using UnityEngine;
 
-public class Test : MonoBehaviour
+public class RoadMaker : MonoBehaviour
 {
     public GameObject splin;
     private Spline spline;
-
     private SplineComputer splineScript;
+    private int roadLength=100;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,15 +16,15 @@ public class Test : MonoBehaviour
 
         spline = new Spline(Spline.Type.BSpline,1);
 
-        spline.points = new SplinePoint[8];
+        spline.points = new SplinePoint[roadLength];
         spline.points[0] = new SplinePoint(Vector3.zero);
         spline.points[1] = new SplinePoint(Vector3.forward*10);
-        spline.points[2] = new SplinePoint(Vector3.forward*20+Vector3.right*5);
-        spline.points[3] = new SplinePoint(Vector3.forward*30);
-        spline.points[4] = new SplinePoint(Vector3.forward*40+Vector3.left*5);
-        spline.points[5] = new SplinePoint(Vector3.forward*50);
-        spline.points[6] = new SplinePoint(Vector3.forward*60+Vector3.right*5);
-        spline.points[7] = new SplinePoint(Vector3.forward*70);
+        spline.points[2] = new SplinePoint(Vector3.forward * 20);
+        for (int i = 3; i < roadLength; i++)
+        {
+            spline.points[i] = new SplinePoint(Vector3.forward*i*10f+Vector3.right*5*Random.Range(-1f,1f));
+            print(spline.points[i].position);
+        }
     }
 
     // Update is called once per frame
